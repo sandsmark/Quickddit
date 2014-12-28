@@ -57,7 +57,16 @@ Dialog {
 
         Button {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Open URL in web browser"
+            text: "Open URL in internal web browser"
+
+            onClicked: {
+                pageStack.replace(Qt.resolvedUrl("IntegratedWebBrowser.qml"), {url: url});
+            }
+        }
+
+        Button {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "Open URL in external web browser"
             onClicked: {
                 Qt.openUrlExternally(url);
                 infoBanner.alert("Launching web browser...");

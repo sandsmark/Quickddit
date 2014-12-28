@@ -61,6 +61,16 @@ AbstractPage {
                 }
             }
 
+            SectionHeader { text: "Behaviour" }
+
+            TextSwitch {
+                text: "Always open in internal browser"
+                checked: appSettings.alwaysInternalBrowser
+                onCheckedChanged: {
+                    appSettings.alwaysInternalBrowser = checked
+                }
+            }
+
             SectionHeader { text: "Account" }
 
             Text {

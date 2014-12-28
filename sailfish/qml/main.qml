@@ -126,7 +126,11 @@ ApplicationWindow {
         }
 
         function createOpenLinkDialog(url) {
-            pageStack.push(Qt.resolvedUrl("OpenLinkDialog.qml"), {url: url});
+            if (appSettings.alwaysInternalBrowser) {
+                pageStack.push(Qt.resolvedUrl("IntegratedWebBrowser.qml"), {url: url});
+            } else {
+                pageStack.push(Qt.resolvedUrl("OpenLinkDialog.qml"), {url: url});
+            }
         }
 
         function createSelectionDialog(title, model, selectedIndex, onAccepted) {

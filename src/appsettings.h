@@ -29,6 +29,7 @@ class AppSettings : public QObject
     Q_ENUMS(FontSize)
     Q_PROPERTY(bool whiteTheme READ whiteTheme WRITE setWhiteTheme NOTIFY whiteThemeChanged)
     Q_PROPERTY(FontSize fontSize READ fontSize WRITE setFontSize NOTIFY fontSizeChanged)
+    Q_PROPERTY(bool alwaysInternalBrowser READ alwaysInternalBrowser WRITE setAlwaysInternalBrowser NOTIFY alwaysInternalBrowserChanged)
     Q_PROPERTY(QString redditUsername READ redditUsername CONSTANT)
 public:
     enum FontSize {
@@ -45,6 +46,9 @@ public:
     FontSize fontSize() const;
     void setFontSize(FontSize fontSize);
 
+    bool alwaysInternalBrowser();
+    void setAlwaysInternalBrowser(bool value);
+
     QString redditUsername() const;
     void setRedditUsername(const QString &username);
 
@@ -56,12 +60,14 @@ public:
 signals:
     void whiteThemeChanged();
     void fontSizeChanged();
+    void alwaysInternalBrowserChanged();
 
 private:
     QSettings *m_settings;
 
     bool m_whiteTheme;
     FontSize m_fontSize;
+    bool m_alwaysInternalBrowser;
     QString m_redditUsername;
     QByteArray m_refreshToken;
 };

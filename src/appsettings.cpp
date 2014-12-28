@@ -29,6 +29,7 @@ AppSettings::AppSettings(QObject *parent) :
 {
     m_whiteTheme = m_settings->value("whiteTheme", false).toBool();
     m_fontSize = static_cast<FontSize>(m_settings->value("fontSize", 1).toInt());
+    m_alwaysInternalBrowser = m_settings->value("alwaysInternalBrowser", false).toBool();
     m_redditUsername = m_settings->value("redditUsername").toString();
     m_refreshToken = m_settings->value("refreshToken").toByteArray();
 
@@ -72,6 +73,20 @@ void AppSettings::setFontSize(AppSettings::FontSize fontSize)
         m_fontSize = fontSize;
         m_settings->setValue("fontSize", static_cast<int>(m_fontSize));
         emit fontSizeChanged();
+    }
+}
+
+bool AppSettings::alwaysInternalBrowser()
+{
+    return m_alwaysInternalBrowser;
+}
+
+void AppSettings::setAlwaysInternalBrowser(bool value)
+{
+    if (m_alwaysInternalBrowser != value) {
+        m_alwaysInternalBrowser = value;
+        m_settings->setValue("alwaysInternalBrowser", value);
+        emit alwaysInternalBrowserChanged();
     }
 }
 
